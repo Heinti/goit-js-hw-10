@@ -18,3 +18,16 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+
+li{
+list-style: none;
+}
+
+span{
+  font-weight: 700;
+}
+img{
+  height: 80px;
+  width: 120px;
+}

@@ -65,10 +65,10 @@ function showOneCounry(userFoundCountry){
       return `
         <li class="country-item">
           <img src="${flags.svg}" alt="${name.official}" width="60" height="30">
-          <p>${name.official}</p>
-          <p>Capital: ${capital}</p>
-          <p>Population: ${population}</p>
-          <p>Languages: ${Object.values(languages).join(',')}</p>
+          <p><span>${name.official}</span></p>
+          <p><span>Capital:</span> ${capital}</p>
+          <p><span>Population:</span> ${population}</p>
+          <p><span>Languages:</span> ${Object.values(languages).join(',')}</p>
         </li>
       `;
     })
@@ -81,7 +81,7 @@ function showAllCounry(userFoundCountry){
       return `
         <li class="country-item">
           <img src="${flags.svg}" alt="${name.official}" width="60" height="30">
-          <p>${name.official}</p>
+          <p><span>${name.official}</span></p>
         </li>
       `;
     })
