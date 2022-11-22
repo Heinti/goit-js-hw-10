@@ -18,50 +18,42 @@ refs.input.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 function onInput(event) {
   let userCountry = event.target.value.trim();
 
-if (userCountry) {
-    LINK.fetchCountries(userCountry)
-    .then(successFind)
-    .catch(errorFind)
- 
-    }
+  if (userCountry) {
+    LINK.fetchCountries(userCountry).then(successFind).catch(errorFind);
+  }
 
-    refs.input.innerHTML = ''
-    refs.divInfo.innerHTML = ''
-
+  refs.input.innerHTML = '';
+  refs.divInfo.innerHTML = '';
 }
 
-function successFind(userFoundCountry){
-    // console.log(userFoundCountry)
+function successFind(userFoundCountry) {
+  // console.log(userFoundCountry)
 
-    if (userFoundCountry.length > 10) {
-        Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
-    }
-    else if(userFoundCountry.length === 1){
-        const markup = showOneCounry(userFoundCountry);
+  if (userFoundCountry.length > 10) {
+    Notiflix.Notify.info(
+      'Too many matches found. Please enter a more specific name.'
+    );
+  } else if (userFoundCountry.length === 1) {
+    const markup = showOneCounry(userFoundCountry);
 
-        refs.input.innerHTML = '';
-        refs.divInfo.innerHTML = markup;
-    }
-    else if (userFoundCountry.length > 1 || userFoundCountry.length < 10) {
-        const markup = showAllCounry(userFoundCountry)
+    refs.input.innerHTML = '';
+    refs.divInfo.innerHTML = markup;
+  } else if (userFoundCountry.length > 1 || userFoundCountry.length < 10) {
+    const markup = showAllCounry(userFoundCountry);
 
-        refs.input.innerHTML = '';
-        refs.divInfo.innerHTML = markup;
-    }
-    else{
-        // console.log(userFoundCountry.message)
-        Notiflix.Notify.failure("Oops, there is no country with that name");
-        refs.input.innerHTML = '';
-        refs.divInfo.innerHTML = '';
-    }
-
+    refs.input.innerHTML = '';
+    refs.divInfo.innerHTML = markup;
+  } else {
+    // console.log(userFoundCountry.message)
+    Notiflix.Notify.failure('Oops, there is no country with that name');
+    refs.input.innerHTML = '';
+    refs.divInfo.innerHTML = '';
+  }
 }
 
-
-function showOneCounry(userFoundCountry){
-    return userFoundCountry
+function showOneCounry(userFoundCountry) {
+  return userFoundCountry
     .map(({ name, flags, capital, population, languages }) => {
-
       return `
         <li class="country-item">
           <img src="${flags.svg}" alt="${name.official}" width="60" height="30">
@@ -75,8 +67,8 @@ function showOneCounry(userFoundCountry){
     .join('');
 }
 // Object.values(languages).join(',')
-function showAllCounry(userFoundCountry){
-    return userFoundCountry
+function showAllCounry(userFoundCountry) {
+  return userFoundCountry
     .map(({ name, flags }) => {
       return `
         <li class="country-item">
@@ -88,6 +80,6 @@ function showAllCounry(userFoundCountry){
     .join('');
 }
 
-function errorFind(еrror){
-   Notiflix.Notify.failure("Oops, there is no country with that name");
+function errorFind(еrror) {
+  Notiflix.Notify.failure('Oops, there is no country with that name');
 }
